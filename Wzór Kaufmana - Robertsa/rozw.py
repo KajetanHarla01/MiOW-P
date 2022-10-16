@@ -3,6 +3,7 @@ t = []
 a = []
 x = []
 P = []
+b = []
 
 for i in range(0, M):
     ti = int(input("Podaj t" + str(i+1) + ": "))
@@ -12,7 +13,7 @@ for i in range(0, M):
     ai = int(input("Podaj a" + str(i+1) + ": "))
     a.append(ai)
     
-V = int(input("Podaj pojemnosc systemu: "))
+V = int(input("Podaj pojemnosc systemu: ")) + 1
 
 x.append(float(1))
 
@@ -39,11 +40,13 @@ print("Prawdopodobienstwa stanu zajetosci kanalow:")
 for n in range(0, len(P)):
     print("P(" + str(n) + ") = " + str(round(P[n], 4)))
     
-i = int(input("Podaj klase i: "))
+for i in range(0, M):
+    bi = 0
+    for n in range(V - t[i] + 1, V):
+        bi += P[n]
+    b.append(bi)
 
-b = 0
+print("Prawdopodobienstwa blokady strumienia klasy zgloszen i:")
 
-for n in range(V - t[i-1] + 1, V):
-    b += P[n]
-
-print("b(" + str(i) + ") = " + str(round(b, 4)))
+for i in range(0, len(b)):
+    print("b(" + str(i+1) + ") = " + str(round(b[i], 4)))
